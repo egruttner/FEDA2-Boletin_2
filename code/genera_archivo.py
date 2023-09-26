@@ -1,12 +1,12 @@
 import sys
+import random
 
-rango = int(sys.argv[1])
+cantidad = int(sys.argv[1])
+rango = int(sys.argv[2])
 
-# Abrir un archivo en modo escritura
+# Genera números aleatorios y los guarda en el archivo
 with open("input.txt", "w") as archivo:
-    # Escribir los números del 1 al 1000 en el archivo
-    archivo.write(str(rango) + "\n")
-    for numero in range(1, rango+1):
+    for _ in range(cantidad):
+        numero = random.randint(1, rango)  # Cambia los límites según tus necesidades
         archivo.write(str(numero) + "\n")
-
 
