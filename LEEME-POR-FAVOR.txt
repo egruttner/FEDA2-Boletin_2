@@ -1,6 +1,6 @@
 Hola! Gracias por leerme!
 Para probar el código, se debe ejecutar el archivo Bash "start.sh"
-Se realizarán 18 experimentos, de 5 líneas cada uno
+Se realizarán 6 experimentos, de 5 líneas cada uno
 Esta ejecución actualizará la información en los directorios CSV y output
 Finalmente se generan y guardarán los gráficos asociados en la carpeta "graficos", en la raíz
 

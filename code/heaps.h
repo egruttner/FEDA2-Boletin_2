@@ -326,64 +326,64 @@ long long execution_time_ms(const vector<int> &A, int id_proceso_seleccionado) {
     
     MinHeap minHeapA;
     MinHeap minHeapB;
-	list<Node*> _heap;
-
+	list<Node*> binHeapA;
+	list<Node*> binHeapB;
+	list<Node*> binHeapResultadoUnion;
 
     switch (id_proceso_seleccionado)
     {
     //Binomial Heap
     case 1: //Inserción
         for (int i = 0; i < A.size(); ++i) {
-            _heap = insert(_heap,A[i]);
-
-            cout<<"INSERTADO:" + to_string(A[i]) <<endl;
-
+            binHeapA = insert(binHeapA,A[i]);
+			cout<<"Insertando"<<endl;
         }
-        printHeap(_heap);
-
         break;
 
+    case 2: //Unión
+        for (int i = 0; i < A.size(); ++i) {
+            binHeapA = insert(binHeapA,A[i]);
+            binHeapB = insert(binHeapB,A[i]+10);
+			cout<<"Insertando"<<endl;
+        }
+		binHeapResultadoUnion = unionBionomialHeap(binHeapA,binHeapB);
+		cout<<"Uniendo"<<endl;
+		break;
 
-
-
-    case 2:
-    case 3:
+    case 3: //Eliminación de elemento mínimo y reorganización del heap
+		for (int i = 0; i < A.size(); ++i) {
+            binHeapA = insert(binHeapA,A[i]);
+			cout<<"Insertando"<<endl;
+        }
+		binHeapA = extractMin(binHeapA);
+		cout<<"Eliminando"<<endl;
+		break;
 
     //Binary Heap
     case 4: //Inserción
-
         for (int i = 0; i < A.size(); ++i) {
             minHeapA.insert(A[i]);
-            //cout<<"INSERTADO:" + to_string(A[i]) <<endl;
-
-            cout<<"Menor elemento:" + to_string(minHeapA.getMin()) <<endl;
-
-            //minHeapA.print();
-
+			cout<<"Insertando"<<endl;
         }
         break;
-    case 5: //Unión
 
+    case 5: //Unión
         for (int i = 0; i < A.size(); ++i) {
             minHeapA.insert(A[i]);
             minHeapB.insert(A[i]+10);
-
-            //cout<<"Menor elemento:" + to_string(minHeapA.getMin()) <<endl;
-
-
-            //minHeapA.print();
-
+			cout<<"Insertando"<<endl;
         }
-        minHeapA.print();
-
         minHeapA.merge(minHeapB);
-
-        minHeapA.print();
-
-
+		cout<<"Uniendo"<<endl;
         break;
 
-    case 6:
+    case 6: //Eliminación de elemento mínimo y reorganización del heap
+        for (int i = 0; i < A.size(); ++i) {
+            minHeapA.insert(A[i]);
+			cout<<"Insertando"<<endl;
+        }
+		minHeapA.deleteMin();
+		cout<<"Eliminando"<<endl;
         break;
 
     default:

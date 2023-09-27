@@ -55,8 +55,6 @@ int main(int argv, char* argc[]) {
       case 4: 
       case 5: 
       case 6: 
-      case 7: 
-      case 8: 
 
       default: 
       break;
@@ -78,7 +76,7 @@ int main(int argv, char* argc[]) {
     ofstream outfile(nombre_archivo_salida,std::ios::app);
 
     double mm_total_time = 0;
-    int numero_de_experimentos=1;
+    int numero_de_experimentos=30;
     for(int j = 0; j < numero_de_experimentos; j++){ 
       
       long long single_execution_time = execution_time_ms(A, id_proceso_selecionado);
