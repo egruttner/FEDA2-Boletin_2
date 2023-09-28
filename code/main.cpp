@@ -47,19 +47,6 @@ int main(int argv, char* argc[]) {
     //LEE EL TAMAÑO DEL VECTOR
     cin>>n;
 
-    switch(atoi(argc[1]))
-    {
-      case 1:
-      case 2:
-      case 3: 
-      case 4: 
-      case 5: 
-      case 6: 
-
-      default: 
-      break;
-    }
-
     //BUSQUEDA SELECCIONADA COMO PARAMETRO
     id_proceso_selecionado = atoi(argc[1]);
 

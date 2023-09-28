@@ -346,6 +346,7 @@ long long execution_time_ms(const vector<int> &A, int id_proceso_seleccionado) {
             binHeapB = insert(binHeapB,A[i]+10);
 			cout<<"Insertando"<<endl;
         }
+		start_time = std::chrono::high_resolution_clock::now();
 		binHeapResultadoUnion = unionBionomialHeap(binHeapA,binHeapB);
 		cout<<"Uniendo"<<endl;
 		break;
@@ -355,6 +356,7 @@ long long execution_time_ms(const vector<int> &A, int id_proceso_seleccionado) {
             binHeapA = insert(binHeapA,A[i]);
 			cout<<"Insertando"<<endl;
         }
+		start_time = std::chrono::high_resolution_clock::now();
 		binHeapA = extractMin(binHeapA);
 		cout<<"Eliminando"<<endl;
 		break;
@@ -373,6 +375,7 @@ long long execution_time_ms(const vector<int> &A, int id_proceso_seleccionado) {
             minHeapB.insert(A[i]+10);
 			cout<<"Insertando"<<endl;
         }
+		start_time = std::chrono::high_resolution_clock::now();
         minHeapA.merge(minHeapB);
 		cout<<"Uniendo"<<endl;
         break;
@@ -382,6 +385,7 @@ long long execution_time_ms(const vector<int> &A, int id_proceso_seleccionado) {
             minHeapA.insert(A[i]);
 			cout<<"Insertando"<<endl;
         }
+		start_time = std::chrono::high_resolution_clock::now();
 		minHeapA.deleteMin();
 		cout<<"Eliminando"<<endl;
         break;
