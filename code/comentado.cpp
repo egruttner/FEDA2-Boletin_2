@@ -46,20 +46,22 @@ Node* mergeBinomialTrees(Node *b1, Node *b2)
 // Función para unir dos "Binomial heaps" (l1 y l2)
 list<Node*> unionBionomialHeap(list<Node*> l1, list<Node*> l2)
 {
-	// _new to another binomial heap which contain
-	// new heap after merging l1 & l2
+	// _new contendrá el nuevo heap unido
+	// it y ot son iteradores para los heaps a unir
 	list<Node*> _new;
 	list<Node*>::iterator it = l1.begin();
 	list<Node*>::iterator ot = l2.begin();
 	while (it!=l1.end() && ot!=l2.end())
 	{
-		// if D(l1) <= D(l2)
+		// Si el grado de l1 es menor o igual al grado de l2, guarda en el nuevo heap
+		// el contenido del iterador de l1
 		if((*it)->degree <= (*ot)->degree)
 		{
 			_new.push_back(*it);
 			it++;
 		}
-		// if D(l1) > D(l2)
+		// Si el grado de l1 es mayor al grado de l2, guarda en el nuevo heap
+		// el contenido del iterador de l2
 		else
 		{
 			_new.push_back(*ot);
@@ -67,14 +69,16 @@ list<Node*> unionBionomialHeap(list<Node*> l1, list<Node*> l2)
 		}
 	}
 
-	// Si aún quedan elementos restantes en el "Binomial heap" l1
+	// Si aún quedan elementos restantes en el "Binomial heap" l1,
+	// guarda en el nuevo heap el contenido del iterador de l1
 	while (it != l1.end())
 	{
 		_new.push_back(*it);
 		it++;
 	}
 
-	// Si aún quedan elementos restantes en el "Binomial heap" l2
+	// Si aún quedan elementos restantes en el "Binomial heap" l2,
+	// guarda en el nuevo heap el contenido del iterador de l2
 	while (ot!=l2.end())
 	{
 		_new.push_back(*ot);
@@ -84,9 +88,8 @@ list<Node*> unionBionomialHeap(list<Node*> l1, list<Node*> l2)
 	return _new;
 }
 
-// adjust function rearranges the heap so that
-// heap is in increasing order of degree and
-// no two binomial trees have same degree in this heap
+// Función de ajuste que reordena el heap para que esté en orden creciente según el grado,
+// y ningún otro árbol binomial tengo el mismo grado
 list<Node*> adjust(list<Node*> _heap)
 {
 	if (_heap.size() <= 1)
@@ -110,13 +113,13 @@ list<Node*> adjust(list<Node*> _heap)
 	
 	while (it1 != _heap.end())
 	{
-		// if only one element remains to be processed
+		// Si solamente queda un elemento a se procesado
 		if (it2 == _heap.end())
 		it1++;
 
-		// If D(it1) < D(it2) i.e. merging of Binomial
-		// Tree pointed by it1 & it2 is not possible
-		// then move next in heap
+		// Si el grado del iterador it1 es menor que el de it2
+		// El árbol apuntado por i1 y it2 no es posible entonces
+		// avanza al siguiente en el heap
 		else if ((*it1)->degree < (*it2)->degree)
 		{
 		it1++;
@@ -125,9 +128,8 @@ list<Node*> adjust(list<Node*> _heap)
 			it3++;
 		}
 
-		// if D(it1),D(it2) & D(it3) are same i.e.
-		// degree of three consecutive Binomial Tree are same
-		// in heap
+		// Si los tres iteradores tienen el mismo grado
+		// el grado de los tres consecutivos Binomial Tree será el mismo del heap
 		else if (it3!=_heap.end() &&
 			(*it1)->degree == (*it2)->degree &&
 			(*it1)->degree == (*it3)->degree)
@@ -137,7 +139,7 @@ list<Node*> adjust(list<Node*> _heap)
 		it3++;
 		}
 
-		// Si el grado de dos Binomial Tree son iguales en el Heap
+		// Si el grado grado de los iteradores it1 e it2 son iguales
 		else if ((*it1)->degree == (*it2)->degree)
 		{
 			Node *temp;
@@ -166,12 +168,9 @@ list<Node*> insertATreeInHeap(list<Node*> _heap,
 	return adjust(temp);
 }
 
-// removing minimum key element from binomial heap
-// this function take Binomial Tree as input and return
-// binomial heap after
-// removing head of that tree i.e. minimum element
 // Método para remover el elemento mínimo de un Binomial Heap
-// Toma como entrada un Binomial Tree y retorna el Binomial Heap luego de haber removido la cabeza de ese árbol, es decir el elemento mínimo
+// Toma como entrada un Binomial Tree y retorna el Binomial Heap luego de haber
+// removido la cabeza de ese árbol, es decir el elemento mínimo
 list<Node*> removeMinFromTreeReturnBHeap(Node *tree)
 {
 	list<Node*> heap;
@@ -190,15 +189,14 @@ list<Node*> removeMinFromTreeReturnBHeap(Node *tree)
 	return heap;
 }
 
-// inserting a key into the binomial heap
+// Se inserta la clave en el binomial heap
 list<Node*> insert(list<Node*> _head, int key)
 {
 	Node *temp = newNode(key);
 	return insertATreeInHeap(_head,temp);
 }
 
-// return pointer of minimum value Node
-// present in the binomial heap
+// Función que retorna un puntero al nodo con valor mínimo en el Binomial Heap
 Node* getMin(list<Node*> _heap)
 {
 	list<Node*>::iterator it = _heap.begin();
@@ -219,18 +217,15 @@ list<Node*> extractMin(list<Node*> _heap)
 	list<Node*> new_heap,lo;
 	Node *temp;
 
-	// temp contains the pointer of minimum value
-	// element in heap
-	temp = getMin(_heap);
+	temp = getMin(_heap); //Almacena el mínimo valor en el heap
 	list<Node*>::iterator it;
 	it = _heap.begin();
 	while (it != _heap.end())
 	{
 		if (*it != temp)
 		{
-		// inserting all Binomial Tree into new
-		// binomial heap except the Binomial Tree
-		// contains minimum element
+		// Inserta todos los Binomial Tree en el nuevo heap
+		// salvo el binomial tree que tiene el elemento mínimo
 		new_heap.push_back(*it);
 		}
 		it++;
@@ -256,6 +251,7 @@ void printTree(Node *h)
 // Método para imprimir el Binomial Heap
 void printHeap(list<Node*> _heap)
 {
+	//Recorre el heap con un iterador
 	list<Node*> ::iterator it;
 	it = _heap.begin();
 	while (it != _heap.end())
