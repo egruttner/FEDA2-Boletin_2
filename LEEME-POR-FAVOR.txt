@@ -2,9 +2,11 @@ Hola! Gracias por leerme!
 Para probar el código, se debe ejecutar el archivo Bash "start.sh"
 Se realizarán 6 experimentos, de 5 líneas cada uno
 Esta ejecución actualizará la información en los directorios CSV y output
-Finalmente se generan y guardarán los gráficos asociados en la carpeta "graficos", en la raíz
+Finalmente se generarán y guardarán los gráficos asociados en la carpeta "graficos", en la raíz
 
-En la carpeta doc se encuentra el documento en versión Docx y PDF
+En la carpeta "doc" se encuentra el documento en versión Docx y PDF
+
+En la carpeta "code" se encuentra el "comentado.cpp", código comentado para Binomial Heap
 
 Ojalá todo resulte bien, sino acá te dejo mi correo!
 egruttner@udec.cl
